@@ -6,12 +6,12 @@ export default function AboutPage() {
     {
       name: "Sanjana Rao",
       role: "Founder & Chief Education Officer",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sanjana.jpg-BDkEnBd1mwF8SuhBjjlO25y0IiZOOe.jpeg",
+      image: "/team/Sanjana.jpg",
     },
     {
       name: "Rakesh Shanbhag",
       role: "Strategic Partner & Head of Operations",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Rakesh.jpg-dYZCQoG32qtHOYicWLTUDO9nCmDAno.jpeg",
+      image: "/team/Sanjana.jpg",
     },
   ]
 
@@ -83,9 +83,9 @@ export default function AboutPage() {
         <div className="container">
           <h2 className="mb-12 text-center text-3xl font-bold tracking-tight text-primary sm:text-4xl">Our Team</h2>
 
-          <div className="mx-auto max-w-2xl space-y-8">
+          <div className="mx-auto max-w-2xl space-y-8 flex gap-8">
             {teamMembers.map((member) => (
-              <Card key={member.name} className="overflow-hidden group">
+              <Card key={member.name} className="overflow-hidden group  ">
                 <div className="aspect-[4/3] overflow-hidden">
                   <div className="h-full w-full transition-all duration-300 group-hover:scale-105 group-hover:border-4 group-hover:border-[#fec64f]">
                     <Image
@@ -93,7 +93,7 @@ export default function AboutPage() {
                       alt={member.name}
                       width={503}
                       height={670}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover object-top"
                     />
                   </div>
                 </div>
