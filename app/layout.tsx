@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Teachers By Choice",
   description: "Nurturing young minds and building a strong foundation for future success",
-    generator: 'v0.dev'
+    generator: 'v0.dev',
+    icons: "/favicon.ico",
 }
 
 export default function RootLayout({
