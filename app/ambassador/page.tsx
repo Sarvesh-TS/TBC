@@ -281,9 +281,9 @@ export default function AmbassadorPage() {
           </h2>
 
           <div className="mx-auto max-w-3xl">
-            <div className="relative border-l border-primary pl-8">
+            <div className="pl-8">
               <div className="mb-12 relative transition-all duration-300 hover:translate-x-2">
-                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 hover:scale-110 hover:bg-[#fec64f] hover:text-primary">
+                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 ">
                   1
                 </div>
                 <h3 className="text-xl font-bold text-primary">Application</h3>
@@ -293,7 +293,7 @@ export default function AmbassadorPage() {
               </div>
 
               <div className="mb-12 relative transition-all duration-300 hover:translate-x-2">
-                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 hover:scale-110 hover:bg-[#fec64f] hover:text-primary">
+                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 ">
                   2
                 </div>
                 <h3 className="text-xl font-bold text-primary">Interview</h3>
@@ -303,7 +303,7 @@ export default function AmbassadorPage() {
               </div>
 
               <div className="mb-12 relative transition-all duration-300 hover:translate-x-2">
-                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 hover:scale-110 hover:bg-[#fec64f] hover:text-primary">
+                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 ">
                   3
                 </div>
                 <h3 className="text-xl font-bold text-primary">Orientation</h3>
@@ -314,7 +314,7 @@ export default function AmbassadorPage() {
               </div>
 
               <div className="relative transition-all duration-300 hover:translate-x-2">
-                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 hover:scale-110 hover:bg-[#fec64f] hover:text-primary">
+                <div className="absolute -left-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-300 ">
                   4
                 </div>
                 <h3 className="text-xl font-bold text-primary">Active Ambassadorship</h3>
