@@ -44,7 +44,9 @@ export default function JoinPage() {
                         name="_subject"
                         value="New Student Registration from Teachers By Choice website"
                       />
-                      <input type="hidden" name="_next" value={window.location.origin + "/thank-you"} />
+                      {typeof window !== 'undefined' && (
+                        <input type="hidden" name="_next" value={window.location.origin + "/thank-you"} />
+                      )}
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="student-name">Full Name</Label>
@@ -140,7 +142,9 @@ export default function JoinPage() {
                         name="_subject"
                         value="New Tutor Application from Teachers By Choice website"
                       />
-                      <input type="hidden" name="_next" value={window.location.origin + "/thank-you"} />
+                      {typeof window !== 'undefined' && (
+                        <input type="hidden" name="_next" value={window.location.origin + "/thank-you"} />
+                      )}
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="tutor-name">Full Name</Label>
