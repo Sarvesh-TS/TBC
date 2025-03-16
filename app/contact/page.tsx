@@ -55,7 +55,19 @@ export default function ContactPage() {
     }
   }
 
-  const sendEmail = async (e) => {
+  interface FormData {
+    name: string
+    email: string
+    phone: string
+    subject: string
+    message: string
+  }
+
+  interface EmailResponse {
+    status: number
+  }
+
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!scriptLoaded || !window.emailjs) {
@@ -70,7 +82,7 @@ export default function ContactPage() {
     setIsSubmitting(true)
 
     try {
-      const response = await window.emailjs.send("service_hkcdfbc", "template_n4kkfds", {
+      const response: EmailResponse = await window.emailjs.send("service_hkcdfbc", "template_n4kkfds", {
         from_name: formData.name,
         from_email: formData.email,
         from_phone: formData.phone,
@@ -130,7 +142,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <Card className="flex flex-col items-center text-center">
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 flex flex-col items-center justify-center">
                 <Phone className="mb-4 h-12 w-12 text-primary" />
                 <h3 className="text-xl font-medium">Phone</h3>
                 <p className="mt-2 text-muted-foreground">+91 8123520414</p>
@@ -138,7 +150,7 @@ export default function ContactPage() {
             </Card>
 
             <Card className="flex flex-col items-center text-center">
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 flex flex-col items-center justify-center">
                 <Mail className="mb-4 h-12 w-12 text-primary" />
                 <h3 className="text-xl font-medium">Email</h3>
                 <p className="mt-2 text-muted-foreground">teachersbychoice23@gmail.com</p>
@@ -146,7 +158,7 @@ export default function ContactPage() {
             </Card>
 
             <Card className="flex flex-col items-center text-center">
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 flex flex-col items-center justify-center">
                 <Instagram className="mb-4 h-12 w-12 text-primary" />
                 <h3 className="text-xl font-medium">Instagram</h3>
                 <p className="mt-2 text-muted-foreground">
@@ -163,7 +175,7 @@ export default function ContactPage() {
             </Card>
 
             <Card className="flex flex-col items-center text-center">
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 flex flex-col items-center justify-center">
                 <Linkedin className="mb-4 h-12 w-12 text-primary" />
                 <h3 className="text-xl font-medium">LinkedIn</h3>
                 <p className="mt-2 text-muted-foreground">
