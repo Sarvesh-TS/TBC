@@ -11,7 +11,7 @@ export default function AboutPage() {
     {
       name: "Rakesh Shanbhag",
       role: "Strategic Partner & Head of Operations",
-      image: "/team/Sanjana.jpg",
+      image: "/team/Rakesh.jpg",
     },
   ]
 
@@ -95,14 +95,14 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {teamMembers.map((member) => (
               <Card key={member.name} className="overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300">
-                <div className="aspect-[4/3] overflow-hidden relative">
+                <div className="aspect-[4/5] overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                   <div className="h-full w-full transition-all duration-300 group-hover:scale-105">
                     <Image
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
                       width={400}
-                      height={300}
+                      height={500}
                       className="h-full w-full object-cover object-top"
                     />
                   </div>
