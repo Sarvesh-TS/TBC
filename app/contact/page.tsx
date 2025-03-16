@@ -22,6 +22,7 @@ export default function ContactPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [scriptLoaded, setScriptLoaded] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ export default function ContactPage() {
     message: "",
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { id: any; name: any; value: any } }) => {
     const { id, name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -40,7 +41,7 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSelectChange = (value) => {
+  const handleSelectChange = (value: any) => {
     setFormData((prev) => ({
       ...prev,
       subject: value,
@@ -84,6 +85,7 @@ export default function ContactPage() {
           title: "Message sent successfully!",
           description: "We'll get back to you as soon as possible.",
         })
+        setIsSubmitted(true)
 
         // Reset form data
         setFormData({
@@ -194,74 +196,80 @@ export default function ContactPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form ref={formRef} className="space-y-4" onSubmit={sendEmail}>
-                  <div className="grid gap-4 sm:grid-cols-2">
+                {isSubmitted ? (
+                  <div className="text-center text-green-500">
+                    Your message has been sent successfully!
+                  </div>
+                ) : (
+                  <form ref={formRef} className="space-y-4" onSubmit={sendEmail}>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          placeholder="Enter your full name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="Enter your email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input
+                          id="phone"
+                          placeholder="Enter your phone number"
+                          value={formData.phone}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Select value={formData.subject} onValueChange={handleSelectChange}>
+                          <SelectTrigger id="subject">
+                            <SelectValue placeholder="Select a subject" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="general">General Inquiry</SelectItem>
+                            <SelectItem value="enrollment">Student Enrollment</SelectItem>
+                            <SelectItem value="tutor">Tutor Application</SelectItem>
+                            <SelectItem value="feedback">Feedback</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        placeholder="Enter your full name"
-                        value={formData.name}
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Type your message here"
+                        rows={5}
+                        value={formData.message}
                         onChange={handleChange}
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Enter your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        placeholder="Enter your phone number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Select value={formData.subject} onValueChange={handleSelectChange}>
-                        <SelectTrigger id="subject">
-                          <SelectValue placeholder="Select a subject" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="general">General Inquiry</SelectItem>
-                          <SelectItem value="enrollment">Student Enrollment</SelectItem>
-                          <SelectItem value="tutor">Tutor Application</SelectItem>
-                          <SelectItem value="feedback">Feedback</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Type your message here"
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full" disabled={isSubmitting || !scriptLoaded}>
-                    {isSubmitting ? "Sending..." : scriptLoaded ? "Send Message" : "Loading..."}
-                  </Button>
-                </form>
+                    <Button type="submit" className="w-full" disabled={isSubmitting || !scriptLoaded}>
+                      {isSubmitting ? "Sending..." : scriptLoaded ? "Send Message" : "Loading..."}
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </div>

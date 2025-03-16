@@ -1,11 +1,43 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle } from "lucide-react"
+import emailjs from 'emailjs-com'
 
 export default function AmbassadorPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    email: "",
+    phone: "",
+    school: "",
+    grade: "",
+    experience: "",
+    motivation: "",
+    ideas: ""
+  })
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: { preventDefault: () => void; target: HTMLFormElement }) => {
+    e.preventDefault()
+    emailjs.sendForm('service_hkcdfbc', 'template_1g1cc9a', e.target, 'KMlrGueiAJb8lgmNZ')
+      .then((result) => {
+          console.log(result.text)
+          setIsSubmitted(true)
+      }, (error) => {
+          console.log(error.text)
+      })
+  }
+
   const benefits = [
     "Leadership experience and skill development",
     "Certificate of recognition",
@@ -100,122 +132,141 @@ export default function AmbassadorPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4" action="https://formsubmit.co/sarveshts2k4@gmail.com" method="POST">
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="New Campus Ambassador Application from Teachers By Choice website"
-                  />
-                  <input type="hidden" name="_next" value={window.location.origin + "/thank-you"} />
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        placeholder="Enter your full name"
-                        name="name"
-                        required
-                        className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        placeholder="Enter your age"
-                        type="number"
-                        name="age"
-                        required
-                        className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                      />
-                    </div>
+                {isSubmitted ? (
+                  <div className="text-center text-green-500">
+                    Your application has been submitted successfully!
                   </div>
+                ) : (
+                  <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          placeholder="Enter your full name"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="age">Age</Label>
+                        <Input
+                          id="age"
+                          placeholder="Enter your age"
+                          type="number"
+                          name="age"
+                          required
+                          value={formData.age}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                    </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="Enter your email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input
+                          id="phone"
+                          placeholder="Enter your phone number"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="school">School/College</Label>
+                        <Input
+                          id="school"
+                          placeholder="Enter your school or college name"
+                          name="school"
+                          required
+                          value={formData.school}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="grade">Grade/Year</Label>
+                        <Input
+                          id="grade"
+                          placeholder="Enter your grade or year"
+                          name="grade"
+                          required
+                          value={formData.grade}
+                          onChange={handleChange}
+                          className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
+                        />
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Enter your email"
-                        name="email"
+                      <Label htmlFor="experience">Leadership Experience</Label>
+                      <Textarea
+                        id="experience"
+                        placeholder="Tell us about any leadership roles or experiences you've had"
+                        name="experience"
                         required
+                        value={formData.experience}
+                        onChange={handleChange}
                         className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
                       />
                     </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        placeholder="Enter your phone number"
-                        name="phone"
+                      <Label htmlFor="motivation">Motivation</Label>
+                      <Textarea
+                        id="motivation"
+                        placeholder="Why do you want to become a TBC Campus Ambassador?"
+                        name="motivation"
                         required
+                        value={formData.motivation}
+                        onChange={handleChange}
                         className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
                       />
                     </div>
-                  </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="school">School/College</Label>
-                      <Input
-                        id="school"
-                        placeholder="Enter your school or college name"
-                        name="school"
+                      <Label htmlFor="ideas">Ideas for Promotion</Label>
+                      <Textarea
+                        id="ideas"
+                        placeholder="Share your ideas on how you would promote TBC in your school/college"
+                        name="ideas"
                         required
+                        value={formData.ideas}
+                        onChange={handleChange}
                         className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="grade">Grade/Year</Label>
-                      <Input
-                        id="grade"
-                        placeholder="Enter your grade or year"
-                        name="grade"
-                        required
-                        className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                      />
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="experience">Leadership Experience</Label>
-                    <Textarea
-                      id="experience"
-                      placeholder="Tell us about any leadership roles or experiences you've had"
-                      name="experience"
-                      required
-                      className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="motivation">Motivation</Label>
-                    <Textarea
-                      id="motivation"
-                      placeholder="Why do you want to become a TBC Campus Ambassador?"
-                      name="motivation"
-                      required
-                      className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="ideas">Ideas for Promotion</Label>
-                    <Textarea
-                      id="ideas"
-                      placeholder="Share your ideas on how you would promote TBC in your school/college"
-                      name="ideas"
-                      required
-                      className="transition-all duration-300 focus:border-[#fec64f] focus:ring-[#fec64f]"
-                    />
-                  </div>
-                </form>
+                    <Button type="submit" className="w-full transition-transform duration-300 hover:scale-105 hover:shadow-md">
+                      Submit Application
+                    </Button>
+                  </form>
+                )}
               </CardContent>
               <CardFooter>
-                <Button className="w-full transition-transform duration-300 hover:scale-105 hover:shadow-md">
-                  Submit Application
-                </Button>
               </CardFooter>
             </Card>
           </div>
