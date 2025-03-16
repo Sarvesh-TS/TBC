@@ -27,9 +27,9 @@ export default function AmbassadorPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: { preventDefault: () => void; target: HTMLFormElement }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    emailjs.sendForm('service_hkcdfbc', 'template_1g1cc9a', e.target, 'KMlrGueiAJb8lgmNZ')
+    emailjs.sendForm('service_hkcdfbc', 'template_1g1cc9a', e.target as HTMLFormElement, 'KMlrGueiAJb8lgmNZ')
       .then((result) => {
           console.log(result.text)
           setIsSubmitted(true)
