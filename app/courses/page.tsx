@@ -119,7 +119,7 @@ export default function CoursesPage() {
                       {[4, 5, 6, 7, 8, 9, 10].map((grade) => (
                         <div
                           key={grade}
-                          className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 hover:scale-110 hover:bg-[#fec64f] hover:text-primary"
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 hover:scale-110 "
                         >
                           {grade}
                         </div>
@@ -154,10 +154,10 @@ export default function CoursesPage() {
             <div className="mt-8 rounded-lg bg-accent p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
               <h3 className="text-xl font-medium text-primary">Available Modes</h3>
               <div className="mt-4 flex flex-wrap gap-4">
-                <div className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:scale-105 hover:bg-[#fec64f] hover:text-primary">
+                <div className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:scale-105 ">
                   Online Classes
                 </div>
-                <div className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:scale-105 hover:bg-[#fec64f] hover:text-primary">
+                <div className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:scale-105">
                   Offline Classes
                 </div>
               </div>

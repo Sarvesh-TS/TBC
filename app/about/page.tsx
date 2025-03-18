@@ -24,7 +24,7 @@ export default function AboutPage() {
             About Us
           </h1>
           <p className="mt-4 text-center text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Empowering students through personalized education since 2020
+            Empowering students through personalized education since 2023
           </p>
         </div>
       </section>
