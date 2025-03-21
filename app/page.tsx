@@ -15,7 +15,7 @@ export default function Home() {
               Nurturing Young Minds for a Brighter Future
             </h1>
             <p className="mt-6 text-lg text-primary-foreground/90">
-              Personalized tutoring services in Bengaluru for students in grades 4-10 across ICSE, CBSE, and STATE
+              Personalized tutoring services in Bengaluru for students in grades 4-12 across ICSE, IGCSE, CBSE, and STATE
               boards.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">

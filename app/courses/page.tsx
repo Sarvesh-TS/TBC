@@ -107,19 +107,19 @@ export default function CoursesPage() {
               <TabsContent value="grades" className="mt-6">
                 <Card className="transition-all duration-300 hover:shadow-lg hover:border-[#fec64f]">
                   <CardHeader>
-                    <CardTitle>Grades 4-10</CardTitle>
+                    <CardTitle>Grades 4-12</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      We offer tutoring services for students from grade 4 to grade 10, covering all subjects in the
+                      We offer tutoring services for students from grade 4 to grade 12, covering all subjects in the
                       curriculum. Our teaching methods are adapted to suit the age group and learning requirements of
                       each grade level.
                     </p>
-                    <div className="mt-4 grid grid-cols-7 gap-2">
-                      {[4, 5, 6, 7, 8, 9, 10].map((grade) => (
+                    <div className="mt-4 grid grid-cols-12 gap-2">
+                      {[4, 5, 6, 7, 8, 9, 10, 11, 12].map((grade) => (
                         <div
                           key={grade}
-                          className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 hover:scale-110 "
+                          className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm transition-transform duration-300 hover:scale-110 "
                         >
                           {grade}
                         </div>
@@ -130,8 +130,13 @@ export default function CoursesPage() {
               </TabsContent>
 
               <TabsContent value="boards" className="mt-6">
-                <div className="grid gap-4 md:grid-cols-3">
-                  {["ICSE", "CBSE", "STATE"].map((board) => (
+                <div className="grid gap-1 md:grid-cols-4 text-center">
+                  {[
+                    { board: "ICSE", description: "Our expert tutors provide in-depth guidance on the ICSE curriculum, focusing on conceptual clarity and application-based learning. With personalized attention and structured lesson plans, we ensure students excel in their exams." },
+                    { board: "CBSE", description: "We offer structured coaching for CBSE students, emphasizing conceptual understanding, problem-solving techniques, and exam strategies. Our tutors simplify complex topics and provide regular assessments for consistent progress." },
+                    { board: "STATE", description: "Our tutoring services cater to State Board students with a syllabus-focused approach, ensuring thorough subject knowledge and exam readiness. We customize our teaching methods to align with state-specific requirements." },
+                    { board: "IGCSE", description: "We provide expert-led coaching for IGCSE students, focusing on critical thinking, analytical skills, and global perspectives. Our interactive sessions and practice-based learning help students perform confidently in their assessments." }
+                  ].map(({ board, description }) => (
                     <Card
                       key={board}
                       className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#fec64f]"
@@ -141,8 +146,7 @@ export default function CoursesPage() {
                       </CardHeader>
                       <CardContent>
                         <p className="text-muted-foreground">
-                          Comprehensive coverage of the {board} curriculum with specialized tutors familiar with the
-                          board's examination pattern and requirements.
+                          {description}
                         </p>
                       </CardContent>
                     </Card>
